@@ -8,7 +8,7 @@ def unzip(zip_file_path):
 
     # Directorio de destino donde se extraerá el contenido (la carpeta madre)
     #le puse
-    destination_directory = 'no me voy a doxear'
+    destination_directory = ""
 
     """ Verifica si la carpeta madre existe, y si no se crea:
     if not os.path.exists(destination_directory):
@@ -18,6 +18,7 @@ def unzip(zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
         zip_ref.extractall(destination_directory)
 
+    
     listItems= os.listdir(destination_directory)
 
     for item in listItems:

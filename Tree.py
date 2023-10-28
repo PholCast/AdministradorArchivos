@@ -6,8 +6,8 @@ from Node import Node
 class GeneralTree:
     def __init__(self, zipPathfile):
 
-        self.root = unzip(zipPathfile)
-        self.root = self.buildTree(self.root)
+        self.initialPath = unzip(zipPathfile)
+        self.root = self.buildTree(self.initialPath)
 
  
     def traverse(self, current):
@@ -56,3 +56,14 @@ class GeneralTree:
         creationDate = creation_datetime.strftime('%Y-%m-%d %H:%M:%S')
 
         return Node(name,path,typeElement,elementSize,creationDate,isFolder)
+    # a ver si funciona
+    def print_tree(self):
+        if self.root is not None:
+            self._print_node(self.root, "", True)
+
+    def _print_node(self, node, prefix, is_last):
+        print(prefix + ("└── " if is_last else "├── ") + str(node))
+        child_count = len(node.children)
+        for i, child in enumerate(node.children):
+            is_last_child = (i == child_count - 1)
+            self._print_node(child, prefix + ("    " if is_last else "│   "), is_last_child)
